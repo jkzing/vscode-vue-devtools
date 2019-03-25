@@ -10,15 +10,33 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.openVueDevtools"
 	],
 	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [{
-			"command": "extension.helloWorld",
-			"title": "Hello World"
-		}]
-	},
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.openVueDevtools",
+        "title": "Vue Devtools: Open Devtool to the Side"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Vue Devtools Configuration",
+      "properties": {
+        "vue-devtools.host": {
+          "type": "string",
+          "default": "http://localhsot",
+          "description": "The hostname your remotedev server started on."
+        },
+        "vue-devtools.port": {
+          "type": "number",
+          "default": 8098,
+          "description": "The socket port for Vue Devtools to listen."
+        }
+      }
+    }
+  },
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
 		"compile": "tsc -p ./",
